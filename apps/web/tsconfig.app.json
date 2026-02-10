@@ -1,0 +1,25 @@
+{
+  "extends": "@cj/tsconfig/vue-app.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@web/*": ["src/*"],
+      "@web-build/*": ["build/*"]
+    },
+    "types": [
+      "vite/client",
+      "element-plus/global",
+      "@pureadmin/table/volar",
+      "unplugin-icons/types/vue",
+      "@pureadmin/descriptions/volar"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "mock/**/*.ts",
+    "src/types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

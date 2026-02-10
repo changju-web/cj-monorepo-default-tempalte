@@ -20,3 +20,7 @@ tests/**/coverage/
 *.njsproj
 *.sln
 tsconfig.tsbuildinfo
+
+# Monorepo specific
+apps/*/dist
+packages/*/dist

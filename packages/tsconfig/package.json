@@ -1,0 +1,12 @@
+{
+  "name": "@cj/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base.json": "./base.json",
+    "./vue-app.json": "./vue-app.json",
+    "./node.json": "./node.json"
+  },
+  "files": ["*.json"]
+}

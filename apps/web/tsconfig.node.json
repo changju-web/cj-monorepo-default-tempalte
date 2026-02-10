@@ -1,0 +1,14 @@
+{
+  "extends": "@cj/tsconfig/node.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@web-build/*": ["build/*"]
+    }
+  },
+  "include": [
+    "vite.config.ts",
+    "build/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

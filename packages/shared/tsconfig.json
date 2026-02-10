@@ -1,0 +1,14 @@
+{
+  "extends": "@cj/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ESNext"],
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
