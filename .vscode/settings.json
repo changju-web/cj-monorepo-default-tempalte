@@ -28,9 +28,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "iconify.excludes": [
-    "el"
-  ],
+  "iconify.excludes": ["el"],
   "vscodeCustomCodeColor.highlightValue": [
     "v-loading",
     "v-auth",
@@ -40,5 +38,5 @@
     "v-perms",
     "v-ripple"
   ],
-  "vscodeCustomCodeColor.highlightValueColor": "#b392f0",
+  "vscodeCustomCodeColor.highlightValueColor": "#b392f0"
 }

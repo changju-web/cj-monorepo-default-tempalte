@@ -1,23 +1,23 @@
-import { cdn } from "./cdn";
-import vue from "@vitejs/plugin-vue";
-import { viteBuildInfo } from "./info";
-import svgLoader from "vite-svg-loader";
-import Icons from "unplugin-icons/vite";
-import type { PluginOption } from "vite";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-import tailwindcss from "@tailwindcss/vite";
-import { configCompressPlugin } from "./compress";
-import removeNoMatch from "vite-plugin-router-warn";
-import { visualizer } from "rollup-plugin-visualizer";
-import removeConsole from "vite-plugin-remove-console";
-import { codeInspectorPlugin } from "code-inspector-plugin";
-import { vitePluginFakeServer } from "vite-plugin-fake-server";
+import { cdn } from './cdn'
+import vue from '@vitejs/plugin-vue'
+import { viteBuildInfo } from './info'
+import svgLoader from 'vite-svg-loader'
+import Icons from 'unplugin-icons/vite'
+import type { PluginOption } from 'vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import tailwindcss from '@tailwindcss/vite'
+import { configCompressPlugin } from './compress'
+import removeNoMatch from 'vite-plugin-router-warn'
+import { visualizer } from 'rollup-plugin-visualizer'
+import removeConsole from 'vite-plugin-remove-console'
+import { codeInspectorPlugin } from 'code-inspector-plugin'
+import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 
 export function getPluginsList(
   VITE_CDN: boolean,
   VITE_COMPRESSION: ViteCompression
 ): PluginOption[] {
-  const lifecycle = process.env.npm_lifecycle_event;
+  const lifecycle = process.env.npm_lifecycle_event
   return [
     tailwindcss(),
     vue(),
@@ -30,7 +30,7 @@ export function getPluginsList(
      * 更多用法看 https://inspector.fe-dev.cn/guide/start.html
      */
     codeInspectorPlugin({
-      bundler: "vite",
+      bundler: 'vite',
       hideConsole: true
     }),
     viteBuildInfo(),
@@ -43,7 +43,7 @@ export function getPluginsList(
     // mock支持
     vitePluginFakeServer({
       logger: false,
-      include: "mock",
+      include: 'mock',
       infixName: false,
       enableProd: true
     }),
@@ -51,16 +51,16 @@ export function getPluginsList(
     svgLoader(),
     // 自动按需加载图标
     Icons({
-      compiler: "vue3",
+      compiler: 'vue3',
       scale: 1
     }),
     VITE_CDN ? cdn : null,
     configCompressPlugin(VITE_COMPRESSION),
     // 线上环境删除console
-    removeConsole({ external: ["src/assets/iconfont/iconfont.js"] }),
+    removeConsole({ external: ['src/assets/iconfont/iconfont.js'] }),
     // 打包分析
-    lifecycle === "report"
-      ? visualizer({ open: true, brotliSize: true, filename: "report.html" })
+    lifecycle === 'report'
+      ? visualizer({ open: true, brotliSize: true, filename: 'report.html' })
       : (null as any)
-  ];
+  ]
 }

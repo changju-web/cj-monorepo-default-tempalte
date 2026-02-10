@@ -15,8 +15,8 @@ export default {
   singleQuote: true,
 
   /** 结束换行符号类型 */
-  endOfLine: "auto",
+  endOfLine: 'auto',
 
   /** 尾随逗号模式 */
-  trailingComma: "none"
-};
+  trailingComma: 'none'
+}
