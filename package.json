@@ -22,18 +22,12 @@
     "lint:prettier": "prettier --write \"{apps,packages}/**/*.{js,ts,json,tsx,css,scss,vue,html,md}\"",
     "lint:stylelint": "stylelint --cache --fix \"**/*.{html,vue,css,scss}\" --cache-location node_modules/.cache/stylelint/",
     "clean": "rimraf node_modules apps/*/node_modules packages/*/node_modules",
-    "clean:cache": "rimraf .eslintcache && rimraf pnpm-lock.yaml && pnpm store prune",
-    "prepare": "husky"
+    "clean:cache": "rimraf .eslintcache && rimraf pnpm-lock.yaml && pnpm store prune"
   },
   "devDependencies": {
     "@cj/eslint-config": "workspace:*",
     "@cj/stylelint-config": "workspace:*",
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@commitlint/types": "^20.0.0",
     "eslint": "^9.38.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "stylelint": "^16.25.0",
