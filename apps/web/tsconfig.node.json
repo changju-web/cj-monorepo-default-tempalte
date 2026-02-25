@@ -1,9 +1,8 @@
 {
   "extends": "@cj/tsconfig/node.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@web-build/*": ["build/*"]
+      "@web-build/*": ["./build/*"]
     }
   },
   "include": [

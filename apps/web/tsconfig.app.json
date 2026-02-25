@@ -1,10 +1,9 @@
 {
   "extends": "@cj/tsconfig/vue-app.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@web/*": ["src/*"],
-      "@web-build/*": ["build/*"]
+      "@web/*": ["./src/*"],
+      "@web-build/*": ["./build/*"]
     },
     "types": [
       "vite/client",
