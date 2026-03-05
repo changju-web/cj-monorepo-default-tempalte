@@ -2,8 +2,11 @@ import type { Plugin } from 'vite'
 import { isArray } from '@pureadmin/utils'
 import compressPlugin from 'vite-plugin-compression'
 
-export const configCompressPlugin = (compress: ViteCompression): Plugin | Plugin[] => {
-  if (compress === 'none') return null
+export const configCompressPlugin = (): Plugin | Plugin[] => {
+  const compress = process.env['VITE_COMPRESSION'] as ViteCompression
+  if (compress === 'none') {
+    return null
+  }
 
   const gz = {
     // 生成的压缩包后缀

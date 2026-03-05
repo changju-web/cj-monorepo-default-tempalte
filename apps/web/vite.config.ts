@@ -4,11 +4,15 @@ import { type UserConfigExport, type ConfigEnv, loadEnv } from 'vite'
 import { root, alias, wrapperEnv, pathResolve, __APP_INFO__ } from './build/utils'
 
 export default async ({ mode }: ConfigEnv): Promise<UserConfigExport> => {
-  const { VITE_CDN, VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = wrapperEnv(
-    loadEnv(mode, root)
-  )
+  const {
+    VITE_APP_PORT,
+    VITE_APP_API_URL,
+    VITE_APP_BASE_URL,
+    VITE_APP_PATH
+  } = wrapperEnv(loadEnv(mode, root))
+
   return {
-    base: VITE_PUBLIC_PATH,
+    base: VITE_APP_PATH,
     root,
     resolve: {
       alias
@@ -16,16 +20,22 @@ export default async ({ mode }: ConfigEnv): Promise<UserConfigExport> => {
     // 服务端渲染
     server: {
       // 端口号
-      port: VITE_PORT,
-      host: '0.0.0.0',
+      port: VITE_APP_PORT,
+      host: true,
       // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
-      proxy: {},
+      proxy: {
+        [VITE_APP_BASE_URL]: {
+          target: VITE_APP_API_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(new RegExp(`^${VITE_APP_BASE_URL}`), ''),
+        }
+      },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*']
       }
     },
-    plugins: await getPluginsList(VITE_CDN, VITE_COMPRESSION),
+    plugins: await getPluginsList(),
     // https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options
     optimizeDeps: {
       include,

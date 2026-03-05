@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 这是一个基于 pnpm workspace 的 Monorepo 架构项目，使用 Vue 3 + TypeScript + Element Plus 构建企业级管理后台。项目基于 [vue-pure-admin](https://pure-admin.cn/) 进行二次开发。
 
+## 工作目录
+
+### 主目录: cj-monorepo-default-tempalte
+
+- **路径**: `D:\Develop\Project\cj-monorepo-default-tempalte`
+- **类型**: Git 仓库
+- **用途**: Vue 3 + TypeScript Monorepo 企业级管理后台主项目
+
+### 附加目录: gx-web-lib
+
+- **路径**: `D:\Develop\Project\gx-web-lib`
+- **用途**: 共享 Web 组件库，包含可复用的 Vue 3 组件、工具函数和业务逻辑模块，供多个项目引用
+
 ## 核心架构
 
 ### Monorepo 结构
@@ -128,20 +141,12 @@ pnpm clean:cache
 
 ### 环境变量
 
-环境变量文件位于 `apps/web/` 目录下：
+环境变量文件位于 `apps/**/` 目录下：
 
 - `.env` - 所有环境共享的基础配置
 - `.env.development` - 开发环境配置
 - `.env.production` - 生产环境配置
 - `.env.staging` - 预发布环境配置
-
-关键环境变量：
-
-- `VITE_PORT` - 开发服务器端口（默认 8848）
-- `VITE_PUBLIC_PATH` - 公共路径
-- `VITE_ROUTER_HISTORY` - 路由模式
-- `VITE_CDN` - 是否启用 CDN
-- `VITE_COMPRESSION` - 构建压缩方式（none/gzip/brotli/both）
 
 ## 技术栈
 

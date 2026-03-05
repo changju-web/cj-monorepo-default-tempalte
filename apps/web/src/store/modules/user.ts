@@ -1,8 +1,15 @@
 import { defineStore } from 'pinia'
 import { type userType, store, router, resetRouter, routerArrays, storageLocal } from '../utils'
-import { type UserResult, type RefreshTokenResult, getLogin, refreshTokenApi } from '@web/api/user'
+import { type UserResult, type RefreshTokenResult } from '@web/api/user'
 import { useMultiTagsStoreHook } from './multiTags'
 import { type DataInfo, setToken, removeToken, userKey } from '@web/utils/auth'
+import { rsaEncrypt } from '@web/utils/crypto/rsa'
+import {
+  login as loginApi,
+  logout as logoutApi,
+  type LoginParams,
+  type LoginResult
+} from '@web/api/auth'
 
 export const useUserStore = defineStore('pure-user', {
   state: (): userType => ({
@@ -51,18 +58,76 @@ export const useUserStore = defineStore('pure-user', {
       this.loginDay = Number(value)
     },
     /** 登入 */
-    async loginByUsername(data) {
+    async loginByUsername(data: LoginParams) {
       return new Promise<UserResult>((resolve, reject) => {
-        getLogin(data)
-          .then((data) => {
-            if (data?.success) setToken(data.data)
-            resolve(data)
+        // RSA 加密密码
+        rsaEncrypt(data.password)
+          .then((encryptedPassword) => {
+            // 调用业务登录 API
+            return loginApi({
+              username: data.username,
+              password: encryptedPassword,
+              captcha_code: data.captcha_code,
+              captcha_uuid: data.captcha_uuid,
+              grant_type: import.meta.env.VITE_APP_GRANT_TYPE || 'password',
+              scope: 'all'
+            })
+          })
+          .then((res: LoginResult) => {
+            if (res.ok && res.data) {
+              // 适配业务 API 响应格式到框架格式
+              const adaptedData = {
+                accessToken: res.data.access_token,
+                refreshToken: res.data.refresh_token,
+                expires: new Date(Date.now() + res.data.expires_in * 1000),
+                // 保留用户信息的默认值，登录成功后通过 myInfo 获取
+                avatar: '',
+                username: data.username,
+                nickname: '',
+                roles: [],
+                permissions: []
+              }
+              setToken(adaptedData)
+              resolve({ success: true, data: adaptedData })
+            } else {
+              resolve({ success: false, data: null as any })
+            }
           })
           .catch((error) => {
             reject(error)
           })
       })
     },
+    /** 获取当前用户信息 */
+    async myInfo() {
+      // TODO: 对接 /user/myInfo API
+      // 暂时返回空数据，实际需要调用后端 API
+      return Promise.resolve({
+        username: this.username,
+        nickname: this.nickname,
+        avatar: this.avatar,
+        roles: this.roles,
+        permissions: this.permissions
+      })
+    },
+
+    /** 清空登录状态 */
+    clearLoginStatus() {
+      this.username = ''
+      this.nickname = ''
+      this.roles = []
+      this.permissions = []
+    },
+
+    /** 调用登出接口 */
+    async logOutApi() {
+      try {
+        await logoutApi()
+      } catch (error) {
+        console.error('登出接口调用失败:', error)
+      }
+    },
+
     /** 前端登出（不调用接口） */
     logOut() {
       this.username = ''
@@ -73,20 +138,10 @@ export const useUserStore = defineStore('pure-user', {
       resetRouter()
       router.push('/login')
     },
-    /** 刷新`token` */
-    async handRefreshToken(data) {
-      return new Promise<RefreshTokenResult>((resolve, reject) => {
-        refreshTokenApi(data)
-          .then((data) => {
-            if (data) {
-              setToken(data.data)
-              resolve(data)
-            }
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+    /** 刷新`token`（单 Token 方案不使用） */
+    async handRefreshToken(_data: any) {
+      // 单 Token 方案：不支持刷新 Token
+      return Promise.reject(new Error('单 Token 方案不支持刷新'))
     }
   }
 })

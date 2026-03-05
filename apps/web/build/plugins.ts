@@ -12,20 +12,8 @@ import removeConsole from 'vite-plugin-remove-console'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 
-export async function getPluginsList(
-  VITE_CDN: boolean,
-  VITE_COMPRESSION: ViteCompression
-): Promise<PluginOption[]> {
+export async function getPluginsList(): Promise<PluginOption[]> {
   const lifecycle = process.env.npm_lifecycle_event
-
-  // CDN 模式仅在 VITE_CDN 为 true 时动态加载
-  // 注意：在 monorepo 环境下，vite-plugin-cdn-import 可能无法正确找到依赖的 package.json
-  // 如需使用 CDN，请确保相关依赖已正确安装或手动指定版本号
-  let cdnPlugin = null
-  if (VITE_CDN) {
-    const { cdn } = await import('./cdn')
-    cdnPlugin = cdn
-  }
 
   return [
     tailwindcss(),
@@ -63,8 +51,7 @@ export async function getPluginsList(
       compiler: 'vue3',
       scale: 1
     }),
-    cdnPlugin,
-    configCompressPlugin(VITE_COMPRESSION),
+    configCompressPlugin(),
     // 线上环境删除console
     removeConsole({ external: ['src/assets/iconfont/iconfont.js'] }),
     // 打包分析

@@ -41,33 +41,39 @@ const __APP_INFO__ = {
   lastBuildTime: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
 }
 
-/** 处理环境变量 */
-const wrapperEnv = (envConf: Recordable): ViteEnv => {
-  // 默认值
-  const ret: ViteEnv = {
-    VITE_PORT: 8848,
-    VITE_PUBLIC_PATH: '',
-    VITE_ROUTER_HISTORY: '',
-    VITE_CDN: false,
-    VITE_HIDE_HOME: 'false',
-    VITE_COMPRESSION: 'none'
-  }
+/**
+ * 处理环境变量
+ * @description 将 .env 文件中的字符串值转换为对应的 TypeScript 类型
+ * @param envConf - 从 loadEnv 加载的原始环境变量对象
+ * @returns 处理后的环境变量对象，类型为 ImportMetaEnv
+ * ```
+ */
+const wrapperEnv = (envConf: Recordable) => {
+  return Object.keys(envConf).reduce((obj, key) => {
+    let value = envConf[key].replace(/\\n/g, '\n')
 
-  for (const envName of Object.keys(envConf)) {
-    let realName = envConf[envName].replace(/\\n/g, '\n')
-    realName = realName === 'true' ? true : realName === 'false' ? false : realName
+    // 转换布尔值
+    if (['true', 'false'].includes(value)) {
+      value = Boolean(value)
+    }
 
-    if (envName === 'VITE_PORT') {
-      realName = Number(realName)
+    // 端口转换数字类型
+    if (key === 'VITE_APP_PORT') {
+      value = Number(value)
     }
-    ret[envName] = realName
-    if (typeof realName === 'string') {
-      process.env[envName] = realName
-    } else if (typeof realName === 'object') {
-      process.env[envName] = JSON.stringify(realName)
+
+    // 赋值到返回对象
+    obj[key] = value
+
+    // 设置Node环境变量
+    if (typeof value === 'string') {
+      process.env[key] = value
+    } else if (typeof value === 'object') {
+      process.env[key] = JSON.stringify(value)
     }
-  }
-  return ret
+
+    return obj
+  }, {}) as ViteEnv
 }
 
 const fileListTotal: number[] = []

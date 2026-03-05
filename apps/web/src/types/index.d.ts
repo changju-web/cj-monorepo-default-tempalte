@@ -58,10 +58,6 @@ interface WheelEvent {
   path?: EventTarget[]
 }
 
-interface ImportMetaEnv extends ViteEnv {
-  __: unknown
-}
-
 interface Fn<T = any, R = T> {
   (...arg: T[]): R
 }

@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@gx-web/core':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.28(typescript@5.9.3))
+      '@gx-web/ep-comp':
+        specifier: ^1.0.0
+        version: 1.0.0(@gx-web/tool@1.1.11(axios@1.13.5)(vue@3.5.28(typescript@5.9.3)))(element-plus@2.13.2(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
     devDependencies:
       '@cj/eslint-config':
         specifier: workspace:*
@@ -17,12 +24,18 @@ importers:
       '@types/node':
         specifier: ^20.19.23
         version: 20.19.33
+      '@types/qs':
+        specifier: ^6.14.0
+        version: 6.14.0
       eslint:
         specifier: ^9.38.0
         version: 9.39.2(jiti@2.6.1)
       prettier:
         specifier: ^3.6.2
         version: 3.8.1
+      qs:
+        specifier: ^6.14.1
+        version: 6.14.1
       rimraf:
         specifier: ^6.0.1
         version: 6.1.2
@@ -38,6 +51,9 @@ importers:
       '@cj/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@gx-web/tool':
+        specifier: ^1.1.11
+        version: 1.1.11(axios@1.13.5)(vue@3.5.28(typescript@5.9.3))
       '@pureadmin/descriptions':
         specifier: ^1.2.1
         version: 1.2.1(echarts@6.0.0)(element-plus@2.13.2(vue@3.5.28(typescript@5.9.3)))(typescript@5.9.3)
@@ -71,6 +87,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      jsencrypt:
+        specifier: ^3.5.4
+        version: 3.5.4
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
@@ -86,6 +105,9 @@ importers:
       pinia:
         specifier: ^3.0.3
         version: 3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))
+      pinia-plugin-persistedstate:
+        specifier: ^4.7.1
+        version: 4.7.1(@nuxt/kit@3.21.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))
       pinyin-pro:
         specifier: ^3.27.0
         version: 3.28.0
@@ -822,6 +844,24 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@gx-web/core@1.0.0':
+    resolution: {integrity: sha512-vxd0IDch/zkEVf8Y5weZswlTFpjxcJnxe4HcJ8lUc7AI70GeB+O/9n4FlExyLW4d90OT6qaYde7VTWeH3BtWXg==}
+    peerDependencies:
+      vue: ^3.3.0
+
+  '@gx-web/ep-comp@1.0.0':
+    resolution: {integrity: sha512-syKCXX3rVnQFYqaVoF5VB5XcJYL42hiyxmwfb/SlsrXk9E+SkDKPkEiPKdcvNNrmESgyUqY/7+VpvGXS6d3vHQ==}
+    peerDependencies:
+      '@gx-web/tool': ^1.1.0
+      element-plus: ^2.2.0
+      vue: ^3.3.0
+
+  '@gx-web/tool@1.1.11':
+    resolution: {integrity: sha512-p6yhcEp0V5RV+OXdiPj93mMHVUd+mi8Be8avqxUBF7C0KT61QLjbwDM6+zPU2447nZszrKadKTwGH9kbvSjz9g==}
+    peerDependencies:
+      axios: '*'
+      vue: ^3.3.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1567,6 +1607,9 @@ packages:
     resolution: {integrity: sha512-ipDqC8FrAl/76p2SSWKSI+H9tFwm7vYqXQrItCuiVPt26Km0jS+NzSsBWAaBusvSbQcfJG+JitdMm+wZAgTYqg==}
     hasBin: true
 
+  batch-processor@1.0.0:
+    resolution: {integrity: sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA==}
+
   birpc@2.9.0:
     resolution: {integrity: sha512-KrayHS5pBi69Xi9JmvoqrIgYGDkD6mcSe/i6YKi3w5kekCLzrX4+nawcXqrj2tIp50Kw/mT/s3p+GVK0A0sKxw==}
 
@@ -1720,6 +1763,9 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+
   css-declaration-sorter@7.3.1:
     resolution: {integrity: sha512-gz6x+KkgNCjxq3Var03pRYLhyNfwhkKF1g/yoLgDNtFvVu0/fOLV9C8fFEZRjACp/XQLumjAYo7JVjzH3wLbxA==}
     engines: {node: ^14 || ^16 || >=18}
@@ -1851,6 +1897,9 @@ packages:
     resolution: {integrity: sha512-Zjzm1NnFXGhV4LYZ6Ze9skPlYi2B4KAmN18FL63A3PZcjhDfroHwhtM6RE8BonlOPHXUnPQynH0BgaoEfvhrGw==}
     peerDependencies:
       vue: ^3.3.0
+
+  element-resize-detector@1.2.4:
+    resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -2286,6 +2335,9 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
+  jsencrypt@3.5.4:
+    resolution: {integrity: sha512-kNjfYEMNASxrDGsmcSQh/rUTmcoRfSUkxnAz+MMywM8jtGu+fFEZ3nJjHM58zscVnwR0fYmG9sGkTDjqUdpiwA==}
+
   jsesc@3.1.0:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
     engines: {node: '>=6'}
@@ -2537,6 +2589,10 @@ packages:
   mlly@1.8.0:
     resolution: {integrity: sha512-l8D9ODSRWLe2KHJSifWGwBqpTZXIXTeo8mlKjY+E2HAakaTeNpqAyBZ8GSqLzHgw4XmHmC8whvpjJNMbFZN7/g==}
 
+  mockjs@1.1.0:
+    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
+    hasBin: true
+
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
@@ -2656,6 +2712,20 @@ packages:
   picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
     engines: {node: '>=12'}
+
+  pinia-plugin-persistedstate@4.7.1:
+    resolution: {integrity: sha512-WHOqh2esDlR3eAaknPbqXrkkj0D24h8shrDPqysgCFR6ghqP/fpFfJmMPJp0gETHsvrh9YNNg6dQfo2OEtDnIQ==}
+    peerDependencies:
+      '@nuxt/kit': '>=3.0.0'
+      '@pinia/nuxt': '>=0.10.0'
+      pinia: '>=3.0.0'
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+      '@pinia/nuxt':
+        optional: true
+      pinia:
+        optional: true
 
   pinia@3.0.4:
     resolution: {integrity: sha512-l7pqLUFTI/+ESXn6k3nu30ZIzW5E2WZF/LaHJEpoq6ElcLD+wduZoB2kBN19du6K/4FDpPMazY2wJr+IndBtQw==}
@@ -3278,6 +3348,10 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
+  ts-md5@1.3.1:
+    resolution: {integrity: sha512-DiwiXfwvcTeZ5wCE0z+2A9EseZsztaiZtGrtSaY5JOD7ekPnR/GoIVD5gXZAlK9Na9Kvpo9Waz5rW64WKAWApg==}
+    engines: {node: '>=12'}
+
   tslib@2.3.0:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
 
@@ -3430,6 +3504,9 @@ packages:
 
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
+
+  vue-component-type-helpers@2.2.12:
+    resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
@@ -4008,6 +4085,31 @@ snapshots:
       '@floating-ui/utils': 0.2.10
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@gx-web/core@1.0.0(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      async-validator: 4.2.5
+      vue: 3.5.28(typescript@5.9.3)
+      vue-component-type-helpers: 2.2.12
+
+  '@gx-web/ep-comp@1.0.0(@gx-web/tool@1.1.11(axios@1.13.5)(vue@3.5.28(typescript@5.9.3)))(element-plus@2.13.2(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      '@gx-web/tool': 1.1.11(axios@1.13.5)(vue@3.5.28(typescript@5.9.3))
+      element-plus: 2.13.2(vue@3.5.28(typescript@5.9.3))
+      vue: 3.5.28(typescript@5.9.3)
+      vue-component-type-helpers: 2.2.12
+
+  '@gx-web/tool@1.1.11(axios@1.13.5)(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      axios: 1.13.5
+      crypto-js: 4.2.0
+      element-resize-detector: 1.2.4
+      jsencrypt: 3.5.4
+      lodash-es: 4.17.23
+      mockjs: 1.1.0
+      ts-md5: 1.3.1
+      vue: 3.5.28(typescript@5.9.3)
+      vue-component-type-helpers: 2.2.12
 
   '@humanfs/core@0.19.1': {}
 
@@ -4743,6 +4845,8 @@ snapshots:
 
   baseline-browser-mapping@2.9.19: {}
 
+  batch-processor@1.0.0: {}
+
   birpc@2.9.0: {}
 
   boolbase@1.0.0: {}
@@ -4926,6 +5030,8 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  crypto-js@4.2.0: {}
+
   css-declaration-sorter@7.3.1(postcss@8.5.6):
     dependencies:
       postcss: 8.5.6
@@ -5087,6 +5193,10 @@ snapshots:
       vue: 3.5.28(typescript@5.9.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  element-resize-detector@1.2.4:
+    dependencies:
+      batch-processor: 1.0.0
 
   emoji-regex@10.6.0: {}
 
@@ -5552,6 +5662,8 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  jsencrypt@3.5.4: {}
+
   jsesc@3.1.0: {}
 
   json-buffer@3.0.1: {}
@@ -5755,6 +5867,10 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.3
 
+  mockjs@1.1.0:
+    dependencies:
+      commander: 11.1.0
+
   ms@2.1.3: {}
 
   muggle-string@0.4.1: {}
@@ -5858,6 +5974,13 @@ snapshots:
   picomatch@2.3.1: {}
 
   picomatch@4.0.3: {}
+
+  pinia-plugin-persistedstate@4.7.1(@nuxt/kit@3.21.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))):
+    dependencies:
+      defu: 6.1.4
+    optionalDependencies:
+      '@nuxt/kit': 3.21.1
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))
 
   pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)):
     dependencies:
@@ -6512,6 +6635,8 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
+  ts-md5@1.3.1: {}
+
   tslib@2.3.0: {}
 
   tslib@2.4.0: {}
@@ -6648,6 +6773,8 @@ snapshots:
       yaml: 2.8.2
 
   vscode-uri@3.1.0: {}
+
+  vue-component-type-helpers@2.2.12: {}
 
   vue-demi@0.14.10(vue@3.5.28(typescript@5.9.3)):
     dependencies:
